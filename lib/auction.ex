@@ -9,10 +9,14 @@ defmodule Auction do
   end
 
   def place_bid(id, amount: amount, bidder_id: bidder_id) do
+    place_bid(id, amount: amount, bidder_id: bidder_id, placed_at: :erlang.system_time)
+  end
+
+  def place_bid(id, amount: amount, bidder_id: bidder_id, placed_at: placed_at) do
     identifier(id)
       |> Agent.update(fn state ->
         bid = %{ id: state.next_bid_id, amount: amount, bidder_id: bidder_id }
-        do_place_bid(state, bid)
+        do_place_bid(state, bid, placed_at)
       end)
   end
 
@@ -21,7 +25,7 @@ defmodule Auction do
     |> Agent.get(fn state -> state end)
   end
 
-  defp do_place_bid(state, bid) do
+  defp do_place_bid(state, bid, placed_at) do
     if allowed_to_place_bid?(state, bid) do
       update_bids state, bid
     else
