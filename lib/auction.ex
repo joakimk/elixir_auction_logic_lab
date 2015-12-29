@@ -50,7 +50,5 @@ defmodule Auction do
     |> Map.put(:next_bid_id, state.next_bid_id + 1)
   end
 
-  defp identifier(id) do
-    :"auction_#{id}"
-  end
+  defp identifier(id), do: :"auction_#{id}"
 end
