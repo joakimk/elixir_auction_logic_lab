@@ -1,10 +1,6 @@
 defmodule Auction do
   def start(id, state) do
-    {:ok, agent} = Agent.start_link(fn ->
-      state
-    end)
-
-    agent |> Process.register identifier(id)
+    {:ok, agent} = Agent.start_link(fn -> state end, name: identifier(id))
   end
 
   def stop(id) do
