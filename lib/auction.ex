@@ -15,7 +15,7 @@ defmodule Auction do
     identifier(id)
       |> Agent.update(fn state ->
         bid = %{ id: state.next_bid_id, amount: amount, bidder_id: bidder_id }
-        do_place_bid(state, bid, placed_at)
+        calculate_next_state(state, bid, placed_at)
       end)
   end
 
@@ -24,7 +24,7 @@ defmodule Auction do
     |> Agent.get(fn state -> state end)
   end
 
-  defp do_place_bid(state, bid, placed_at) do
+  defp calculate_next_state(state, bid, placed_at) do
     if allowed_to_place_bid?(state, bid, placed_at) do
       update_bids state, bid
     else
