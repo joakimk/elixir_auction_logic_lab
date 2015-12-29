@@ -47,14 +47,6 @@ defmodule AuctionTest do
   end
 
   test "does not change state for late bids" do
-    Auction.start 2, %{ bids: [], leading_bid: nil, next_bid_id: 1, end_time: 1 }
-
-    Auction.place_bid(2, amount: 200, bidder_id: 10, placed_at: 2)
-    state = Auction.get_state(2)
-    assert state.leading_bid == nil
-  end
-
-  test "does not change state for late bids" do
     Auction.start 2, %{ bids: [], leading_bid: nil, next_bid_id: 1, end_time: 10 }
 
     Auction.place_bid(2, amount: 200, bidder_id: 10, placed_at: 11)

@@ -25,20 +25,20 @@ defmodule Auction do
   end
 
   defp do_place_bid(state, bid, placed_at) do
-    if allowed_to_place_bid?(state, bid) do
+    if allowed_to_place_bid?(state, bid, placed_at) do
       update_bids state, bid
     else
       state
     end
   end
 
-  defp allowed_to_place_bid?(state, bid) do
-    auction_ongoing?(state) &&
+  defp allowed_to_place_bid?(state, bid, placed_at) do
+    auction_ongoing?(state, placed_at) &&
       bid_above_leading_bid?(bid, state.leading_bid)
   end
 
-  defp auction_ongoing?(state) do
-    :erlang.system_time < state.end_time
+  defp auction_ongoing?(state, placed_at) do
+    placed_at <= state.end_time
   end
 
   defp bid_above_leading_bid?(_, nil), do: true
