@@ -10,7 +10,7 @@ defmodule Auction do
   def place_bid(id, amount: amount, bidder_id: bidder_id) do
     identifier(id)
     |> Agent.update(fn state ->
-      %{state | leading_bid_amount: amount}
+      %{state | leading_bid: %{ id: 1, amount: amount, bidder_id: bidder_id } }
     end)
   end
 
