@@ -8,6 +8,18 @@ Usage:
 
     mix test
 
+## Todo
+
+Things that would be interesting to try.
+
+* [ ] Add the max bid concept (since this affects persistence)
+* [ ] Add persistence
+* [ ] Add benchmark suite simulating users viewing and placing bids in a realistic manner and a realistic number of bids for any particular auction
+  - How many auctions could a small computer, e.g. heroku instance or laptop, handle?
+* [ ] Add auction-closing logic and a event to hook into when that happens
+* [ ] Add supervision and restarting of auctions
+* [ ] Figure out how to ensure only one machine handles the same unique auction at a time, and handle failover
+
 ## License
 
 Copyright (c) 2015 [Joakim Kolsjö](https://twitter.com/joakimk)
