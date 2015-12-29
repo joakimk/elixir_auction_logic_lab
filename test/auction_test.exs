@@ -9,7 +9,7 @@ defmodule AuctionTest do
 
     state = Auction.get_state(1)
     assert state.leading_bid_amount == 200
-    #assert state.leading_bid_id == 1
+    #assert state.leading_bid == 1
     #assert state.bids == [ %{ id: 1, amount: 200, bidder_id: 10 } ]
   end
 end

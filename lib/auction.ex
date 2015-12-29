@@ -3,20 +3,23 @@ defmodule Auction do
     {:ok, agent} = Agent.start_link(fn ->
       state
     end)
-    Process.register agent, :"auction %#{id}"
+
+    agent |> Process.register identifier(id)
   end
 
   def place_bid(id, amount: amount, bidder_id: bidder_id) do
-    process = Process.whereis(:"auction %#{id}")
-    Agent.update(process, fn state ->
+    identifier(id)
+    |> Agent.update(fn state ->
       %{state | leading_bid_amount: amount}
     end)
   end
 
   def get_state(id) do
-    process = Process.whereis(:"auction %#{id}")
-    Agent.get(process, fn state ->
-      state
-    end)
+    identifier(id)
+    |> Agent.get(fn state -> state end)
+  end
+
+  defp identifier(id) do
+    :"auction:#{id}"
   end
 end
