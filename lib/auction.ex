@@ -11,7 +11,6 @@ defmodule Auction do
   def place_bid(id, amount: amount, bidder_id: bidder_id) do
     place_bid(id, amount: amount, bidder_id: bidder_id, placed_at: :erlang.system_time)
   end
-
   def place_bid(id, amount: amount, bidder_id: bidder_id, placed_at: placed_at) do
     identifier(id)
       |> Agent.update(fn state ->
