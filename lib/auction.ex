@@ -51,6 +51,6 @@ defmodule Auction do
   end
 
   defp identifier(id) do
-    :"auction:#{id}"
+    :"auction_#{id}"
   end
 end
