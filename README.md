@@ -4,6 +4,10 @@ A lab on doing bidding logic in elixir where each auction is represented by it's
 
 Initially created on the "Holiday hacknight" (<http://www.meetup.com/stockholm-elixir/events/227496385/>).
 
+Usage:
+
+    mix test
+
 ## License
 
 Copyright (c) 2015 [Joakim Kolsjö](https://twitter.com/joakimk)
